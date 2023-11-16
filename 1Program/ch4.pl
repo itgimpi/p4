@@ -146,3 +146,64 @@ T1 == T2
 ideter :-
     likes(ana, mil) == likes(ana, mil),
     IDE is 10, pred1(IDE) == pred1(10).
+
+nideter :-
+    5+5 == 9+1.
+
+/* Non Identical Terms?
+T1 \== T2
+*/
+
+ni2 :-
+    5+5 \== 9+1.
+
+ni3 :-
+    not 5+5 == 9+1.
+
+/*
+Identical Terms with Unification
+T1=T2
+Kao == uz dodatak:
+Da li postoje vredn. promenljivih
+tako da T1 i T2 budu isti?
+
+Query: ?- pred1(X) = pred1(10)
+
+*/
+
+p1 :- pred1(X) = pred1(10), writeln(X). 
+
+p2 :- likes(X, prolog) = likes(iv5, prolog), writeln(X).
+
+iks :- X=0, X=:=0.
+
+iks2 :- 5+5=10+0.
+
+iks31 :- 5+X=9+1, writeln(X).
+iks32 :- 5+X=10, writeln(X).
+iks31 :- 5+X=5+5, writeln(X).
+
+iks4 :- likes(X, prolog) = likes(Y, prolog).
+
+/*
+NonIdentical Terms with Unification
+T1\=T2
+
+
+Query: ?- 5+5 \= 9+1
+
+*/
+
+/*
+
+Logical Operators
+
+and                ,
+or                 ;
+not
+
+*/
+
+log1 :- X=0, X is 0.
+log2 :- X=0, not X is 0.
+log3 :- 1<2, 9 is 4+5.
