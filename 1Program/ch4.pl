@@ -199,7 +199,11 @@ Query: ?- 5+5 \= 9+1
 Logical Operators
 
 and                ,
+Goal1, Goal2, ....
+
 or                 ;
+Goal1; Goal2; ....
+
 not
 
 */
