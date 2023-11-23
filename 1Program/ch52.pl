@@ -30,3 +30,32 @@ process2(X, OldCount, Result) :-
     New is OldCount + 1,
     count2(New, Result).
 
+/* Using Chars 
+Count Vowels Till *
+*/
+
+go3(Vowels) :-
+    count3(0, Vowels).
+
+count3(OldVowels, TotalVowels) :-
+    get0(X),
+    process3(X, OldVowels, TotalVowels).
+
+process3(42, OldVowels, OldVowels).
+
+process3(X, OldVowels, TotalVowels) :-
+    X =\= 42,
+    processChar(X, OldVowels, New),
+    count3(New, TotalVowels).
+
+processChar(X, OldVowels, New) :-
+    vowel(X),
+    New is OldVowels + 1.
+processChar(X, OldVowels, OldVowels).
+
+vowel(97).
+vowel(101).
+vowel(105).
+vowel(111).
+vowel(117). 
+
