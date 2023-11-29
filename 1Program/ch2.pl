@@ -1,4 +1,4 @@
-/*
+/* Ch2 Klauzule i predikati
 Clauses and Predicates
 
 Clauses
