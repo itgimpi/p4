@@ -85,3 +85,44 @@ readterms(Infile, Outfile) :-
     read(T2), write(T2), nl,
     read(T3), write(T3), nl,
     seen, told.
+
+/*
+seen, told - postave na user
+
+ali postoji problem...
+
+ako je kod malo duzi,
+ne treba da bude user, 
+nego da se vrati na preth.
+
+*/
+
+readterms2(Infile, Outfile) :-
+    seeing(S), see(Infile),
+    telling(T), tell(Outfile),
+
+    read(T1), write(T1), nl,
+    read(T2), write(T2), nl,
+    read(T3), write(T3), nl,
+
+    seen, see(S), told, tell(T).
+
+/*
+
+iskopiraj znakove sa ulaza do !
+
+u neki fajl */
+
+kopiraj(Fajl) :-
+    telling(T), tell(Fajl),
+    znakovi,
+    told, tell(T).
+
+znakovi :-
+    get0(C),
+    obrada(C).
+
+obrada(33).
+obrada(C) :-
+    C =\= 33,
+    put(C), znakovi.

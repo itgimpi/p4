@@ -4,26 +4,6 @@ current in. stream -> write -> current out. stream
 
 keyboard, screen ~ user (friendly)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Output
 
 tell/1
@@ -128,4 +108,37 @@ readterms(Infile, Outfile) :-
 nije bas najbolje resenje,
 In i Out se vrate na user,
 bolje bilo da vrate na preth. stanje
+
+kako da se vrati preth. stanje a ne user?
+
+S vezuje preth. stanje, T ... isto
 */
+
+readterms2(Infile, Outfile) :-
+    seeing(S), see(Infile),
+    telling(T), tell(Outfile),
+    read(T1), write(T1), nl,
+    read(T2), write(T2), nl,
+    read(T3), write(T3), nl,
+    read(T4), write(T4), nl,
+    read(T5), write(T5), nl,
+    see(S), tell(T).
+
+copychars(OutFile) :-
+    telling(TT), 
+    tell(OutFile),
+    copycharacters,
+    told, tell(TT).
+
+copycharacters :-
+    get0(NN),
+    processs(NN).
+
+processs(33).
+processs(NN) :-
+    NN =\= 33,
+    put(NN),
+    copycharacters.
+
+/*
+copychars('chars.txt') */
