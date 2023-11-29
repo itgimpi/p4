@@ -1,4 +1,4 @@
-/*
+/* Ch5 Ulaz i izlaz
 Input, Output
 
 Terms, Chars.
