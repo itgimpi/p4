@@ -1,4 +1,4 @@
-/*                           Operators
+/* Ch4 Operators
 
 predicate  atoms
 voli      (ana, milovan).
