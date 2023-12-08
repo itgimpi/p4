@@ -3,25 +3,59 @@
 Stop BCKTRCK! with CUT!
 
 
+
+
+
 Intro
 BCKTRCK je u osnovi prologa
 
+
+
 primeri bez ! nisu bas kako treba...
+
+
 
 */
 
+
+
+
 larger(A, B, A) :- A > B.
 larger(A, B, B).
+
+
+
 
 /* za 8,10 samo je drugi
 za 10,8 ispunjen je prvi, ali 
 nista ne fali nidrugom... */
 
+
+
+
+
+
+
 larger2(A, B, A) :- A > B.
 larger2(_, B, B).
 
+
+
+
+
+
+
+
+
+
 larger3(A, B, A) :- A > B.
 larger3(A, B, B) :- A =< B.
+
+
+
+larger5(A, B, B) :- A =< B.
+larger5(A, B, A) :- A > B.
+
 
 
 /* potrosi mem. */
@@ -30,6 +64,9 @@ sumto(N, S) :-
     NN is N-1,
     sumto(NN, SS),
     S is SS + N. 
+
+
+
 
 sumto2(1,1).
 sumto2(N, S) :-
@@ -55,6 +92,9 @@ sumto3(N, S) :-
     NN is N-1,
     sumto3(NN, SS),
     S is SS + N.
+
+
+
 
 
 
