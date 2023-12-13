@@ -56,36 +56,46 @@ c6 :-
     writeln('New List Is '),
     writeln(LL).
 
+
+
 writelist([]).
 writelist([H|T]) :-
     writeln(H), writelist(T).
 
+
+
+
+
 /* BIP
+
 Built-in Predicates 
 
        term
 member(arg1, arg2) - da li arg1 pripada arg2-u
              list
-*/
 
-m1 :- member(1, [1,2,3]).
-m2 :- member(a, [a,b,c]).
-m3 :- member(d, [a,b,c]).
-m4 :- member(x, []).
-m5 :- member([1,2,3], [1,a,[1,2,3],p(a,b)]).
-m6 :- member(pred1(a,b,c), [1, 2, pred1(a,b,c)]).
+Queries:
 
-/* 1st arg. is unbound?
-put it into Query:
+?- member(1, [1,2,3]).
+yes
 
-member(X, [a,b,c,d,e]).
+?- member(a, [a,b,c]).
 
-| ?- member(X, [a,b,c,d,e]).
-X = a ?;
-X = b ?;
-X = c ?;
-X = d ?;
-X = e ?;
+yes
+| ?- member(x, []).
+no
+| ?- member(p1(a,b),[1,a,p1(a,b)]).
+
+yes
+
+Arg. 1 is Unbound Var. ?
+
+?- member(E,[1,2,3,4,5]).
+E = 1 ?;
+E = 2 ?;
+E = 3 ?;
+E = 4 ?;
+E = 5 ?;
 no
 
 */
@@ -95,43 +105,36 @@ danemo(Odg) :- repeat,
     member(Odg, [yes, no, maybe]),
     write('odg. je '), write(Odg), nl, !.
 
-/* da li je x isti sa GLAVOM 
-sadrzi(X, [X|_]).    */
-sadrzi(X, [X|_]) :- !.
-/* za [1,2,3,4,5] poziva [2,3,4,5],
-[3,4,5], [4,5], [5] i [] */
-sadrzi(X, [_|R]) :- sadrzi(X, R).
+pripada(E, [E|_]):- !.
+pripada(E, [_|R]) :- pripada(E, R).
 
-/* ILI je Glava ILI je u Repu */
-sadrzi2(X, [G|R]) :- G == X; sadrzi2(X, R).
+pripada2(E, [G|R]) :- G==E; pripada2(E,R).
 
-/* 
+/*
+        list
+length( arg1, arg2)
+              var
 
-Built-in Predicates 
-
-       list, var (unbound, bound)
-length(arg1, arg2) 
-
-?- length([a,b,c], D).
+Unbound Var.
+?- length([1,2,3], D).
 D = 3
 yes
-
-?- length([[1], [a,b], [pr1(z,x),cd]],D).
+| ?- length([1,[1,2,3],[]], D).
 D = 3
 yes
-
-length([], D).     
+| ?- length([], D).            
 D = 0
 yes
 
-?- length([a,b,c], 3).
+Unbound Var.
+
+?- length([1,2,3], 3).
 
 yes
-?- length([a,b,c], 4).
+| ?- length([1,2,3], 6).
 no
-
-?- D is 3, length([a,b,c], D).
-D = 3
+| ?- N is 3, length([a,b,c],N).
+N = 3
 yes
 
 */
