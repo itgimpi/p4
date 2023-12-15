@@ -136,3 +136,96 @@ yes
 
 */
 
+duzina([],0).
+duzina([_|R],D):-duzina(R,DD),D is DD+1.
+
+/*
+        List   Var.
+reverse(arg1, arg2).
+
+reverse([1,2,3,4],N).
+N = [4,3,2,1]
+yes
+| ?- reverse([a,b,c],N).  
+N = [c,b,a]
+yes
+| ?- reverse([a,[1,2],[1,2,3]],N).
+N = [[1,2,3],[1,2],a]
+yes
+| ?- reverse([],N).               
+N = []
+yes
+
+bez zadnjeg?
+[1,2,3,4]->[1,2,3]
+
+*/
+
+bezzadnjeg(L,L2) :- 
+    reverse(L,L3),
+    obezglavi(L3,L4),
+    reverse(L4,L2).
+
+obezglavi([_|R],R).
+
+obrni(L,NL) :- okreni(L,[],NL).
+
+okreni([],L,L):-!.
+okreni([G|R],NL,L) :- okreni(R,[G|NL],L).
+
+/*
+     list  list  var
+append(arg1,arg2,arg3)
+
+Concatenate
+
+?- append([1,2,3],[4,5],NL).
+NL = [1,2,3,4,5]
+yes
+| ?- append([],[4,5],NL).     
+NL = [4,5]
+yes
+| ?- append([1,2,3],[],NL).   
+NL = [1,2,3]
+yes
+| ?- append([[1,2],3,[4,5]],[a,[b,c]],NL).
+NL = [[1,2],3,[4,5],a,[b,c]]
+yes
+
+?- append(L1,L2,[1,2,3,4,5]).
+L1 = []
+L2 = [1,2,3,4,5] ?;
+L1 = [1]
+L2 = [2,3,4,5] ?;
+L1 = [1,2]
+L2 = [3,4,5] ?;
+L1 = [1,2,3]
+L2 = [4,5] ?;
+L1 = [1,2,3,4]
+L2 = [5] ?;
+L1 = [1,2,3,4,5]
+L2 = [] ?;
+no
+
+append(L1,[G2|R2],[1,2,3,4,5]).
+L1 = []
+G2 = 1
+R2 = [2,3,4,5] ?;
+L1 = [1]
+G2 = 2
+R2 = [3,4,5] ?;
+L1 = [1,2]
+G2 = 3
+R2 = [4,5] ?;
+L1 = [1,2,3]
+G2 = 4
+R2 = [5] ?;
+L1 = [1,2,3,4]
+G2 = 5
+R2 = [] ?;
+no
+
+*/
+
+spoji([],L,L).
+spoji([G1|R1],L2,[G1|L3]):-spoji(R1,L2,L3).

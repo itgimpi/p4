@@ -139,3 +139,101 @@ yes
 
 */
 
+duzina([], 0).
+duzina([_|R], D) :- duzina(R, D1), D is D1 + 1.
+
+/*
+
+reverse
+
+reverse([1,2,3],L).
+L = [3,2,1]
+yes
+| ?- reverse(L,[1,2,3]).
+no
+| ?- reverse([ [1,2], [a,b] ]).
+***  Undefined procedure: reverse/1
+| ?- reverse([ [1,2], [a,b] ], L).
+L = [[a,b],[1,2]]
+yes
+| ?- reverse([1,2,3], [3,2,1]).   
+
+yes
+
+[1,2,3,4,5] -> [5,4,3,2]
+
+*/
+
+naopakrep(L, NR) :- 
+    obezglavi(L, OL),
+    reverse(OL, NR).
+
+naopakrep2(L, NR) :- 
+    reverse(L, NL),
+    obezglavi(NL, OL),
+    reverse(OL, NR).
+
+obezglavi([_|R], R).
+
+obrni(L,NL) :- obrt(L, [], NL).
+
+obrt([],L,L):-!.
+obrt([G|R], NL, L) :- obrt(R,[G|NL],L).
+
+
+/*
+
+        L1    L2    un. var.
+append(arg1, arg2, arg3).
+
+Concatenate
+
+?- append([1,2,3],[4,5,6],R).
+R = [1,2,3,4,5,6]
+yes
+| ?- append([],[1,2,3],R).     
+R = [1,2,3]
+yes
+| ?- append([[a,b],c,d],[[q,w,e],r,t,y],R).
+R = [[a,b],c,d,[q,w,e],r,t,y]
+yes
+| ?- append([1,2],[3,4],[1,2,3,4]).
+
+yes
+
+?- append(L1, L2, [1,2,3,4,5]).
+L1 = []
+L2 = [1,2,3,4,5] ?;
+L1 = [1]
+L2 = [2,3,4,5] ?;
+L1 = [1,2]
+L2 = [3,4,5] ?;
+L1 = [1,2,3]
+L2 = [4,5] ?;
+L1 = [1,2,3,4]
+L2 = [5] ?;
+L1 = [1,2,3,4,5]
+L2 = [] ?;
+no
+
+append(X, [Y|Z], [1,2,3,4,5]).
+X = []
+Y = 1
+Z = [2,3,4,5] ?;
+X = [1]
+Y = 2
+Z = [3,4,5] ?;
+X = [1,2]
+Y = 3
+Z = [4,5] ?;
+X = [1,2,3]
+Y = 4
+Z = [5] ?;
+X = [1,2,3,4]
+Y = 5
+Z = [] ?;
+no
+
+*/
+spoji([],L,L).
+spoji([G1|R1],L2,[G1|L3]):-spoji(R1,L2,L3).
