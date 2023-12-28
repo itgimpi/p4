@@ -44,6 +44,9 @@ primer22(Vars) :- /* sistem 2 jed. u skupu Z */
     X - Y #= 632, /* ogranicenje2 */
     labeling(Vars).
 
+
+
+
 /*
 
   TWO
@@ -52,6 +55,9 @@ primer22(Vars) :- /* sistem 2 jed. u skupu Z */
 =FOUR
 
 */
+
+
+
 
 four(Vars) :-
     Vars = [T, W, O, F, U, R],
@@ -64,3 +70,127 @@ four(Vars) :-
     write('  '), write(T), write(W), writeln(O),
     write(' +'), write(T), write(W), writeln(O),
     write('='), write(F), write(O), write(U), writeln(R).
+
+logika1(Vars) :-
+    Vars = [P, Q], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    P #\/ Q, /* ogranicenje */
+    labeling(Vars).
+
+logika2(Vars) :-
+    Vars = [P, Q], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    P #/\ Q, /* ogranicenje */
+    labeling(Vars).
+
+/* logicki operatori za oganicenja:
+
+#\/                 ILI
+#/\                 I
+#<=>                EQ
+#=>                 IMPL
+#\                  NOT
+
+Ostrvo sa T i F
+a, b
+a: bar 1 od nas laze
+
+*/
+
+ostrvo1(Vars) :-
+    Vars = [A, B], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    A #<=> ( #\A #\/ #\B ), /* ogranicenje */
+    labeling(Vars).
+
+/* Ostrvo sa T i F
+a, b
+a: obojica lazemo */
+
+ostrvo2(Vars) :-
+    Vars = [A, B], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    A #<=> ( #\A #/\ #\B ), /* ogranicenje */
+    labeling(Vars).
+
+/* Ostrvo sa T i F
+a, b
+a: bar 1 istinu */
+
+ostrvo3(Vars) :-
+    Vars = [A, B], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    A #<=> ( A #\/  B ), /* ogranicenje */
+    labeling(Vars).
+
+/* Ostrvo sa T i F
+a, b
+b: ja sam vitez, onaj drugi je lopov */
+
+ostrvo4(Vars) :-
+    Vars = [A, B], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    B #<=> ( B #/\ #\A ), /* ogranicenje */
+    labeling(Vars).
+
+/* Ostrvo sa T i F
+a, b
+b: realno, isti smo */
+
+ostrvo5(Vars) :-
+    Vars = [A, B], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    B #<=> ( B #<=> A ), /* ogranicenje */
+    labeling(Vars).
+
+/* Ostrvo sa T i F
+a, b
+a: NISMO ISTI! */
+
+ostrvo6(Vars) :-
+    Vars = [A, B], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    A #<=> #\( A #<=> B ), /* ogranicenje */
+    labeling(Vars).
+
+/* Ostrvo sa T i F
+a, b
+a: ja istinu, b laze */
+
+ostrvo7(Vars) :-
+    Vars = [A, B], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    A #<=> (A #/\ #\B), /* ogranicenje */
+    labeling(Vars).
+
+/* Ostrvo sa T i F
+a, b
+a: lzem za b nzm */
+
+ostrvo8(Vars) :-
+    Vars = [A, B], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    A #<=> #\A, /* ogranicenje */
+    labeling(Vars).
+
+/* Ostrvo sa T i F
+a, b
+a: ako on istinu, ja lzem */
+
+ostrvo9(Vars) :-
+    Vars = [A, B], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    A #<=> (B #=> #\A), /* ogranicenje */
+    labeling(Vars).
+
+/* Ostrvo sa T i F
+a, b, c
+a: ja ne lazem, za razliku od njih
+c: svi smo lazovi */
+
+ostrvo10(Vars) :-
+    Vars = [A, B, C], /* promenljive */
+    Vars :: 0..1, /* domeni :: ili in */
+    A #<=> (A #/\ #\B #/\ #\C), /* ogranicenje */
+    C #<=> (#\A #/\ #\B #/\ #\C),
+    labeling(Vars).
