@@ -1,0 +1,61 @@
+haskell> :set prompt "haskell> "
+
+haskell> 1 + 2
+3
+
+haskell> 2 * 3
+6
+
+haskell> 5 / 2
+2.5
+
+haskell> True && False
+False
+
+haskell> not False
+True
+
+haskell> min 1 2
+1
+
+haskell> max 1 2
+2
+
+haskell> succ 3
+4
+
+haskell> pred 3
+2
+
+haskell> succ 9 + pred 6
+15
+
+haskell> (+) 1 2
+3
+
+haskell> (++++) x y = x + y + 1
+haskell> (++++) 1 2            
+4
+haskell> 1 ++++ 2
+4
+
+(+5) 6
+11
+
+Prelude> let x = 1
+Prelude> x + 1
+2
+
+Prelude> let l1 = [1,2,3]
+Prelude> l1
+[1,2,3]
+
+*Main> "hello" ++ " " ++ "world"
+"hello world"
+
+Prelude> "hello" == ['h','e','l','l','o']
+True
+
+*Main> l1 <  l2
+True
+
