@@ -1,3 +1,7 @@
+ghci
+GHCi, version 8.10.7: https://www.haskell.org/ghc/  :? for help
+Prelude>
+
 haskell> :set prompt "haskell> "
 
 haskell> 1 + 2
@@ -30,7 +34,8 @@ haskell> pred 3
 haskell> succ 9 + pred 6
 15
 
-haskell> (+) 1 2
+haskell> 1 + 2 --infix
+haskell> (+) 1 2 --prefix
 3
 
 haskell> (++++) x y = x + y + 1
@@ -50,12 +55,12 @@ Prelude> let l1 = [1,2,3]
 Prelude> l1
 [1,2,3]
 
-*Main> "hello" ++ " " ++ "world"
+Prelude> "hello" ++ " " ++ "world"
 "hello world"
 
 Prelude> "hello" == ['h','e','l','l','o']
 True
 
-*Main> l1 <  l2
+Prelude> l1 <  l2
 True
 

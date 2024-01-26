@@ -19,6 +19,7 @@ l3 = l1 ++ l2 --Concatenation
 
 lista = [1,2,3,4,5,6,7,8,9]
 
+--index
 l4 = lista !! 5 -- peti el. c-ovski
 l5 = [9]
 
