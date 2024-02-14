@@ -30,12 +30,16 @@ p1(1,2)
 3.14
 
 --rajsfeslus f-ja
+
 zip [1,2,3,4,5][1,2,3,4,5]
 [(1,1),(2,2),(3,3),(4,4),(5,5)]
+
 *Main> zip [1,2]["jen","dva"]
 [(1,"jen"),(2,"dva")]
+
 *Main> zip [1..10]["jen","dva"]
 [(1,"jen"),(2,"dva")]
+
 *Main> zip [1..]["jen","dva"]  
 [(1,"jen"),(2,"dva")]
 
@@ -43,7 +47,10 @@ zip [1,2,3,4,5][1,2,3,4,5]
 -}
 
 --varijacije sa ponavllanjem od 10 el. 3. klase
-pita = [ (a,b,c) | a <- [1..10], b <- [1..10], c <- [1..10] ]
+pita = [ (a, b, c) | a <- [1..10], b <- [1..10], c <- [1..10] ]
+
+
+
 
 --pravougli trouglovi u opsegu stranica od 1 do 10
 pita' = [ (a,b,c) | a <- [1..10], b <- [1..10], c <- [1..10], a*a + b*b == c*c ]
