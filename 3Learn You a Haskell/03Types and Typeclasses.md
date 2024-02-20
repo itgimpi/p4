@@ -1,8 +1,4 @@
-Types and Typeclasses - Learn You a Haskell for Great Good!   @import url('reset.css'); @import url('style.css');     
-
-*   [Starting Out](starting-out)
-*   [Table of contents](chapters)
-*   [Syntax in Functions](syntax-in-functions)
+Types and Typeclasses - Learn You a Haskell for Great Good!   
 
 Types and Typeclasses
 =====================
@@ -262,8 +258,3 @@ Floating includes only floating point numbers, so Float and Double.
 A very useful function for dealing with numbers is fromIntegral. It has a type declaration of fromIntegral :: (Num b, Integral a) => a -> b. From its type signature we see that it takes an integral number and turns it into a more general number. That's useful when you want integral and floating point types to work together nicely. For instance, the length function has a type declaration of length :: \[a\] -> Int instead of having a more general type of (Num b) => length :: \[a\] -> b. I think that's there for historical reasons or something, although in my opinion, it's pretty stupid. Anyway, if we try to get a length of a list and then add it to 3.2, we'll get an error because we tried to add together an Int and a floating point number. So to get around this, we do fromIntegral (length \[1,2,3,4\]) + 3.2 and it all works out.
 
 Notice that fromIntegral has several class constraints in its type signature. That's completely valid and as you can see, the class constraints are separated by commas inside the parentheses.
-
-*   [Starting Out](starting-out)
-*   [Table of contents](chapters)
-*   [Syntax in Functions](syntax-in-functions)
-
