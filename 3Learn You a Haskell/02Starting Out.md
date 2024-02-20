@@ -1,5 +1,4 @@
 Starting Out - Learn You a Haskell for Great Good!   
-@import url('reset.css'); @import url('style.css');     
 
 Starting Out
 ============
