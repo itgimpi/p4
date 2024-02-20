@@ -1,8 +1,5 @@
-Starting Out - Learn You a Haskell for Great Good!   @import url('reset.css'); @import url('style.css');     
-
-*   [Introduction](introduction)
-*   [Table of contents](chapters)
-*   [Types and Typeclasses](types-and-typeclasses)
+Starting Out - Learn You a Haskell for Great Good!   
+@import url('reset.css'); @import url('style.css');     
 
 Starting Out
 ============
@@ -539,7 +536,4 @@ ghci> rightTriangles'
 
 And there's our answer! This is a common pattern in functional programming. You take a starting set of solutions and then you apply transformations to those solutions and filter them until you get the right ones.
 
-*   [Introduction](introduction)
-*   [Table of contents](chapters)
-*   [Types and Typeclasses](types-and-typeclasses)
 
