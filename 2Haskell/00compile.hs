@@ -26,12 +26,12 @@ Linux:
 
 ghc -o hello 04io.hs   
 Linking hello ...
-PS C:\Users\IT odeljenje 1\Desktop\Repo\p4\2Haskell> ./hello.exe
+PS C:\Users\IT odeljenje 1\Desktop\Repo\p4\2Haskell> ./hello
 Hello, world!
 
 ghc -o a.out 04io.hs   
 Linking a.out ...
-PS C:\Users\IT odeljenje 1\Desktop\Repo\p4\2Haskell> ./hello.exe
+PS C:\Users\IT odeljenje 1\Desktop\Repo\p4\2Haskell> ./a.out
 Hello, world!
 
 
