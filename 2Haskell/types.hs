@@ -24,7 +24,7 @@ saberi :: Num a => a -> a -> a
 saberi :: Num a => a -> a -> a --opisuje tip, radi samo sa brojevima
 saberi x y = x + y
 
-saberiInt::Int->Int->Int --radi samo sa Int
+saberiInt :: Int -> Int -> Int --radi samo sa Int
 saberiInt x y = x + y
 
 samoMalaSlova :: [Char] -> [Char]
@@ -50,5 +50,22 @@ Double, C
 Bool, Python
 
 Char, C/C++
+
+-}
+
+fct :: Integer -> Integer
+fct n = product [1..n]
+
+{-
+*Main> 1+2  
+3
+*Main> (+) 1 2
+3
+*Main> :t (+)
+(+) :: Num a => a -> a -> a
+
+*Main> :t (==)
+(==) :: Eq a => a -> a -> Bool
+
 
 -}
