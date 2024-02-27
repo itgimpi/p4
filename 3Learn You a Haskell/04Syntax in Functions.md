@@ -44,52 +44,64 @@ This is the first time we've defined a function recursively. Recursion is import
 
 Pattern matching can also fail. If we define a function like this:
 
+```
 charName :: Char -> String
 charName 'a' = "Albert"
 charName 'b' = "Broseph"
 charName 'c' = "Cecil"
+```
 
 and then try to call it with an input that we didn't expect, this is what happens:
 
+```
 ghci> charName 'a'
 "Albert"
 ghci> charName 'b'
 "Broseph"
 ghci> charName 'h'
 "\*\*\* Exception: tut.hs:(53,0)-(55,21): Non-exhaustive patterns in function charName
+```
 
 It complains that we have non-exhaustive patterns, and rightfully so. When making patterns, we should always include a catch-all pattern so that our program doesn't crash if we get some unexpected input.
 
 Pattern matching can also be used on tuples. What if we wanted to make a function that takes two vectors in a 2D space (that are in the form of pairs) and adds them together? To add together two vectors, we add their x components separately and then their y components separately. Here's how we would have done it if we didn't know about pattern matching:
 
+```
 addVectors :: (Num a) => (a, a) -> (a, a) -> (a, a)
 addVectors a b = (fst a + fst b, snd a + snd b)
+```
 
 Well, that works, but there's a better way to do it. Let's modify the function so that it uses pattern matching.
 
-addVectors :: (Num a) => (a, a) -> (a, a) -> (a, a)
-addVectors (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
+```
+addVectors' :: (Num a) => (a, a) -> (a, a) -> (a, a)
+addVectors' (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
+```
 
 There we go! Much better. Note that this is already a catch-all pattern. The type of addVectors (in both cases) is addVectors :: (Num a) => (a, a) -> (a, a) - > (a, a), so we are guaranteed to get two pairs as parameters.
 
 fst and snd extract the components of pairs. But what about triples? Well, there are no provided functions that do that but we can make our own.
 
+```
 first :: (a, b, c) -> a
-first (x, \_, \_) = x
+first (x, _, _) = x --we really don't care what that part is, so we just write a _
 
 second :: (a, b, c) -> b
-second (\_, y, \_) = y
+second (_, y, _) = y
 
 third :: (a, b, c) -> c
-third (\_, \_, z) = z
+third (_, _, z) = z
+```
 
-The \_ means the same thing as it does in list comprehensions. It means that we really don't care what that part is, so we just write a \_.
+The _ means the same thing as it does in list comprehensions. It means that we really don't care what that part is, so we just write a _.
 
 Which reminds me, you can also pattern match in list comprehensions. Check this out:
 
-ghci> let xs = \[(1,3), (4,3), (2,4), (5,3), (5,6), (3,1)\]
-ghci> \[a+b | (a,b) <- xs\]
-\[4,7,6,8,11,4\] 
+```
+ghci> let xs = [(1,3), (4,3), (2,4), (5,3), (5,6), (3,1)]
+ghci> [a+b | (a,b) <- xs]
+[4,7,6,8,11,4] 
+```
 
 Should a pattern match fail, it will just move on to the next element.
 
@@ -101,34 +113,42 @@ If you want to bind, say, the first three elements to variables and the rest of 
 
 Now that we know how to pattern match against list, let's make our own implementation of the head function.
 
-head' :: \[a\] -> a
-head' \[\] = error "Can't call head on an empty list, dummy!"
-head' (x:\_) = x
+```
+head' :: [a] -> a
+head' [] = error "Can't call head on an empty list, dummy!"
+head' (x:_) = x
+```
 
 Checking if it works:
 
-ghci> head' \[4,5,6\]
+```
+ghci> head' [4,5,6]
 4
 ghci> head' "Hello"
 'H'
+```
 
 Nice! Notice that if you want to bind to several variables (even if one of them is just \_ and doesn't actually bind at all), we have to surround them in parentheses. Also notice the error function that we used. It takes a string and generates a runtime error, using that string as information about what kind of error occurred. It causes the program to crash, so it's not good to use it too much. But calling head on an empty list doesn't make sense.
 
 Let's make a trivial function that tells us some of the first elements of the list in (in)convenient English form.
 
+```
 tell :: (Show a) => \[a\] -> String
 tell \[\] = "The list is empty"
 tell (x:\[\]) = "The list has one element: " ++ show x
 tell (x:y:\[\]) = "The list has two elements: " ++ show x ++ " and " ++ show y
 tell (x:y:\_) = "This list is long. The first two elements are: " ++ show x ++ " and " ++ show y
+```
 
 This function is safe because it takes care of the empty list, a singleton list, a list with two elements and a list with more than two elements. Note that (x:\[\]) and (x:y:\[\]) could be rewriten as \[x\] and \[x,y\] (because its syntatic sugar, we don't need the parentheses). We can't rewrite (x:y:\_) with square brackets because it matches any list of length 2 or more.
 
 We already implemented our own length function using list comprehension. Now we'll do it by using pattern matching and a little recursion:
 
-length' :: (Num b) => \[a\] -> b
-length' \[\] = 0
-length' (\_:xs) = 1 + length' xs
+```
+length' :: (Num b) => [a] -> b
+length' [] = 0
+length' (_:xs) = 1 + length' xs
+```
 
 This is similar to the factorial function we wrote earlier. First we defined the result of a known input — the empty list. This is also known as the edge condition. Then in the second pattern we take the list apart by splitting it into a head and a tail. We say that the length is equal to 1 plus the length of the tail. We use \_ to match the head because we don't actually care what it is. Also note that we've taken care of all possible patterns of a list. The first pattern matches an empty list and the second one matches anything that isn't an empty list.
 
@@ -136,18 +156,22 @@ Let's see what happens if we call length' on "ham". First, it will check if it's
 
 Let's implement sum. We know that the sum of an empty list is 0. We write that down as a pattern. And we also know that the sum of a list is the head plus the sum of the rest of the list. So if we write that down, we get:
 
+```
 sum' :: (Num a) => \[a\] -> a
 sum' \[\] = 0
 sum' (x:xs) = x + sum' xs
+```
 
 There's also a thing called _as patterns_. Those are a handy way of breaking something up according to a pattern and binding it to names whilst still keeping a reference to the whole thing. You do that by putting a name and an @ in front of a pattern. For instance, the pattern xs@(x:y:ys). This pattern will match exactly the same thing as x:y:ys but you can easily get the whole list via xs instead of repeating yourself by typing out x:y:ys in the function body again. Here's a quick and dirty example:
 
+```
 capital :: String -> String
 capital "" = "Empty string, whoops!"
-capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ \[x\]
+capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]
 
 ghci> capital "Dracula"
 "The first letter of Dracula is D"
+```
 
 Normally we use as patterns to avoid repeating ourselves when matching against a bigger pattern when we have to use the whole thing again in the function body.
 
@@ -195,18 +219,23 @@ Note that there's no \= right after the function name and its parameters, before
 
 Another very simple example: let's implement our own max function. If you remember, it takes two things that can be compared and returns the larger of them.
 
+```
 max' :: (Ord a) => a -> a -> a
 max' a b 
     | a > b     = a
     | otherwise = b
+```
 
 Guards can also be written inline, although I'd advise against that because it's less readable, even for very short functions. But to demonstrate, we could write max' like this:
 
+```
 max' :: (Ord a) => a -> a -> a
 max' a b | a > b = a | otherwise = b
+```
 
 Ugh! Not very readable at all! Moving on: let's implement our own compare by using guards.
 
+```
 myCompare :: (Ord a) => a -> a -> Ordering
 a \`myCompare\` b
     | a > b     = GT
@@ -215,6 +244,7 @@ a \`myCompare\` b
 
 ghci> 3 \`myCompare\` 2
 GT
+```
 
 _Note:_ Not only can we call functions as infix with backticks, we can also define them using backticks. Sometimes it's easier to read that way.
 
@@ -223,15 +253,18 @@ Where!?
 
 In the previous section, we defined a BMI calculator function and berator like this:
 
+```
 bmiTell :: (RealFloat a) => a -> a -> String
 bmiTell weight height
     | weight / height ^ 2 <= 18.5 = "You're underweight, you emo, you!"
     | weight / height ^ 2 <= 25.0 = "You're supposedly normal. Pffft, I bet you're ugly!"
     | weight / height ^ 2 <= 30.0 = "You're fat! Lose some weight, fatty!"
     | otherwise                   = "You're a whale, congratulations!"
+```
 
 Notice that we repeat ourselves here three times. We repeat ourselves three times. Repeating yourself (three times) while programming is about as desirable as getting kicked inna head. Since we repeat the same expression three times, it would be ideal if we could calculate it once, bind it to a name and then use that name instead of the expression. Well, we can modify our function like this:
 
+```
 bmiTell :: (RealFloat a) => a -> a -> String
 bmiTell weight height
     | bmi <= 18.5 = "You're underweight, you emo, you!"
@@ -239,9 +272,11 @@ bmiTell weight height
     | bmi <= 30.0 = "You're fat! Lose some weight, fatty!"
     | otherwise   = "You're a whale, congratulations!"
     where bmi = weight / height ^ 2
+```
 
 We put the keyword where after the guards (usually it's best to indent it as much as the pipes are indented) and then we define several names or functions. These names are visible across the guards and give us the advantage of not having to repeat ourselves. If we decide that we want to calculate BMI a bit differently, we only have to change it once. It also improves readability by giving names to things and can make our programs faster since stuff like our bmi variable here is calculated only once. We could go a bit overboard and present our function like this:
 
+```
 bmiTell :: (RealFloat a) => a -> a -> String
 bmiTell weight height
     | bmi <= skinny = "You're underweight, you emo, you!"
@@ -252,6 +287,7 @@ bmiTell weight height
           skinny = 18.5
           normal = 25.0
           fat = 30.0
+```
 
 The names we define in the where section of a function are only visible to that function, so we don't have to worry about them polluting the namespace of other functions. Notice that all the names are aligned at a single column. If we don't align them nice and proper, Haskell gets confused because then it doesn't know they're all part of the same block.
 
@@ -265,18 +301,22 @@ You can also use where bindings to _pattern match_! We could have rewritten the 
 
 Let's make another fairly trivial function where we get a first and a last name and give someone back their initials.
 
+```
 initials :: String -> String -> String
 initials firstname lastname = \[f\] ++ ". " ++ \[l\] ++ "."
     where (f:\_) = firstname
           (l:\_) = lastname  
+```
 
 We could have done this pattern matching directly in the function's parameters (it would have been shorter and clearer actually) but this just goes to show that it's possible to do it in where bindings as well.
 
 Just like we've defined constants in where blocks, you can also define functions. Staying true to our healthy programming theme, let's make a function that takes a list of weight-height pairs and returns a list of BMIs.
 
+```
 calcBmis :: (RealFloat a) => \[(a, a)\] -> \[a\]
 calcBmis xs = \[bmi w h | (w, h) <- xs\]
     where bmi weight height = weight / height ^ 2
+```
 
 And that's all there is to it! The reason we had to introduce bmi as a function in this example is because we can't just calculate one BMI from the function's parameters. We have to examine the list passed to the function and there's a different BMI for every pair in there.
 
@@ -338,13 +378,15 @@ We can't use the bmi name in the (w, h) <- xs part because it's defined prior to
 
 We omitted the _in_ part of the _let_ binding when we used them in list comprehensions because the visibility of the names is already predefined there. However, we could use a _let in_ binding in a predicate and the names defined would only be visible to that predicate. The _in_ part can also be omitted when defining functions and constants directly in GHCi. If we do that, then the names will be visible throughout the entire interactive session.
 
-ghci> let zoot x y z = x \* y + z
+```
+ghci> let zoot x y z = x * y + z
 ghci> zoot 3 9 2
 29
-ghci> let boot x y z = x \* y + z in boot 3 4 2
+ghci> let boot x y z = x * y + z in boot 3 4 2
 14
 ghci> boot
-<interactive>:1:0: Not in scope: \`boot'
+<interactive>:1:0: Not in scope: `boot'
+```
 
 If _let_ bindings are so cool, why not use them all the time instead of _where_ bindings, you ask? Well, since _let_ bindings are expressions and are fairly local in their scope, they can't be used across guards. Some people prefer _where_ bindings because the names come after the function they're being used in. That way, the function body is closer to its name and type declaration and to some that's more readable.
 
@@ -357,6 +399,7 @@ Many imperative languages (C, C++, Java, etc.) have case syntax and if you've ev
 
 Haskell takes that concept and one-ups it. Like the name implies, case expressions are, well, expressions, much like if else expressions and _let_ bindings. Not only can we evaluate expressions based on the possible cases of the value of a variable, we can also do pattern matching. Hmmm, taking a variable, pattern matching it, evaluating pieces of code based on its value, where have we heard this before? Oh yeah, pattern matching on parameters in function definitions! Well, that's actually just syntactic sugar for case expressions. These two pieces of code do the same thing and are interchangeable:
 
+```
 head' :: \[a\] -> a
 head' \[\] = error "No head for empty lists!"
 head' (x:\_) = x
@@ -364,6 +407,7 @@ head' (x:\_) = x
 head' :: \[a\] -> a
 head' xs = case xs of \[\] -> error "No head for empty lists!"
                       (x:\_) -> x
+```
 
 As you can see, the syntax for case expressions is pretty simple:
 
@@ -376,19 +420,19 @@ expression is matched against the patterns. The pattern matching action is the s
 
 Whereas pattern matching on function parameters can only be done when defining functions, case expressions can be used pretty much anywhere. For instance:
 
+```
 describeList :: \[a\] -> String
 describeList xs = "The list is " ++ case xs of \[\] -> "empty."
                                                \[x\] -> "a singleton list." 
                                                xs -> "a longer list."
+```
 
 They are useful for pattern matching against something in the middle of an expression. Because pattern matching in function definitions is syntactic sugar for case expressions, we could have also defined this like so:
 
+```
 describeList :: \[a\] -> String
 describeList xs = "The list is " ++ what xs
     where what \[\] = "empty."
           what \[x\] = "a singleton list."
           what xs = "a longer list."
-
-*   [Types and Typeclasses](types-and-typeclasses)
-*   [Table of contents](chapters)
-*   [Recursion](recursion)
+```
