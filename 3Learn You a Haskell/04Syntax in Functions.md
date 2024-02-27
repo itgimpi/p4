@@ -13,7 +13,9 @@ This chapter will cover some of Haskell's cool syntactic constructs and we'll st
 When defining functions, you can define separate function bodies for different patterns. This leads to really neat code that's simple and readable. You can pattern match on any data type — numbers, characters, lists, tuples, etc. Let's make a really trivial function that checks if the number we supplied to it is a seven or not.
 
 lucky :: (Integral a) => a -> String
+
 lucky 7 = "LUCKY NUMBER SEVEN!"
+
 lucky x = "Sorry, you're out of luck, pal!" 
 
 When you call lucky, the patterns will be checked from top to bottom and when it conforms to a pattern, the corresponding function body will be used. The only way a number can conform to the first pattern here is if it is 7. If it's not, it falls through to the second pattern, which matches anything and binds it to x. This function could have also been implemented by using an if statement. But what if we wanted a function that says the numbers from 1 to 5 and says "Not between 1 and 5" for any other number? Without pattern matching, we'd have to make a pretty convoluted if then else tree. However, with it:
