@@ -20,6 +20,7 @@ lucky x = "Sorry, you're out of luck, pal!"
 
 When you call lucky, the patterns will be checked from top to bottom and when it conforms to a pattern, the corresponding function body will be used. The only way a number can conform to the first pattern here is if it is 7. If it's not, it falls through to the second pattern, which matches anything and binds it to x. This function could have also been implemented by using an if statement. But what if we wanted a function that says the numbers from 1 to 5 and says "Not between 1 and 5" for any other number? Without pattern matching, we'd have to make a pretty convoluted if then else tree. However, with it:
 
+```
 sayMe :: (Integral a) => a -> String
 sayMe 1 = "One!"
 sayMe 2 = "Two!"
@@ -27,14 +28,17 @@ sayMe 3 = "Three!"
 sayMe 4 = "Four!"
 sayMe 5 = "Five!"
 sayMe x = "Not between 1 and 5"
+```
 
 Note that if we moved the last pattern (the catch-all one) to the top, it would always say "Not between 1 and 5", because it would catch all the numbers and they wouldn't have a chance to fall through and be checked for any other patterns.
 
 Remember the factorial function we implemented previously? We defined the factorial of a number n as product \[1..n\]. We can also define a factorial function _recursively_, the way it is usually defined in mathematics. We start by saying that the factorial of 0 is 1. Then we state that the factorial of any positive integer is that integer multiplied by the factorial of its predecessor. Here's how that looks like translated in Haskell terms.
 
+```
 factorial :: (Integral a) => a -> a
 factorial 0 = 1
-factorial n = n \* factorial (n - 1)
+factorial n = n * factorial (n - 1)
+```
 
 This is the first time we've defined a function recursively. Recursion is important in Haskell and we'll take a closer look at it later. But in a nutshell, this is what happens if we try to get the factorial of, say, 3. It tries to compute 3 \* factorial 2. The factorial of 2 is 2 \* factorial 1, so for now we have 3 \* (2 \* factorial 1). factorial 1 is 1 \* factorial 0, so we have 3 \* (2 \* (1 \* factorial 0)). Now here comes the trick — we've defined the factorial of 0 to be just 1 and because it encounters that pattern before the catch-all one, it just returns 1. So the final result is equivalent to 3 \* (2 \* (1 \* 1)). Had we written the second pattern on top of the first one, it would catch all numbers, including 0 and our calculation would never terminate. That's why order is important when specifying patterns and it's always best to specify the most specific ones first and then the more general ones later.
 
