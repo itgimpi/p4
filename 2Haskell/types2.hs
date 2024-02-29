@@ -7,6 +7,16 @@ Prelude> show 3.14
 Prelude> show True
 "True"
 
+
+
+
+
+
+
+
+
+
+
 -read - opposite of show
  
 Prelude> read "3" -- ne zna na kakvo 3 se misli!
@@ -16,12 +26,18 @@ Prelude> read "False"
 Prelude> read "[1,2]" 
 *** Exception: Prelude.read: no parse
 
+
+
+
 Prelude> read "3"+1  --1st way
 4
 Prelude> read "False" || True
 True
 
-Prelude> read "3"::Int --read
+
+
+
+Prelude> read "3"::Int --2nd way
 3
 Prelude> read "3"::Float
 3.0
