@@ -7,8 +7,8 @@ Above statements can be written in propositional logic like this - <br>
   (2) happy ← strawberry_picking<br>
 <br>
 And again these statements can be written in CNF like this - <br>
-  (1) (strawberry_picking ∨!pleasant) ∧<br>
-  (2) (happy ∨!strawberry_picking)<br>
+  (1) (strawberry_picking ∨ ~pleasant) ∧<br>
+  (2) (happy ∨ ~strawberry_picking)<br>
 <br>
 By resolving these two clauses and cancelling out the conflicting terms 'strawberry_picking' and '~strawberry_picking',  we can have one new clause,<br>
   (3) ~pleasant ∨ happy<br>
