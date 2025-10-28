@@ -12,4 +12,10 @@ Part(I) : English Sentences<br>
 
 (6) It is raining<br>
 
-(7) It is sunny
+(7) It is sunny<br>
+
+(Goal 1) You are not doing strawberry picking.<br>
+
+(Goal 2) You will enjoy.<br>
+
+(Goal 3) Try it yourself : You will get wet. <br>
