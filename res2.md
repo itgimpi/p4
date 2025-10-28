@@ -10,6 +10,6 @@ Part(I) : English Sentences<br>
 
 (5) It is warm day<br>
 
-(6) It is raining
-<br>
+(6) It is raining<br>
+
 (7) It is sunny
