@@ -1,6 +1,6 @@
-Date su rečenice:
+Date su rečenice:<br>
 
-Nobody who really appreciates Beethoven fails to keep silence while the Moonlight sonata is being played.
+Nobody who really appreciates Beethoven fails to keep silence while the Moonlight sonata is being played.<br>
 Guinea pigs are hopelessly ignorant of music.
 No one who is hopelessly ignorant of music ever keeps silence while the Moonlight sonata is being played.
 Therefore, guinea pigs never really appreciate Beethoven.
