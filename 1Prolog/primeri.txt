@@ -1,0 +1,421 @@
+/* ostrvo 1
+
+a. 
+a: ja sam lažov
+
+rešenje:
+
+prolog:
+
+
+*/
+
+
+/* ostrvo 2
+
+a. 
+a: ja ne lažem
+
+rešenje:
+
+prolog:
+
+
+*/
+
+
+/* ostrvo 3
+
+a. 
+a: dobar dan
+
+rešenje:
+
+prolog:
+
+
+*/
+
+
+/* ostrvo 4
+
+a, b. 
+a: obojica govorimo istinu
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 5
+
+a, b. 
+a: obojica lažemo
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 6
+
+a, b. 
+a: bar 1 od nas ne laže
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 7
+
+a, b. 
+a: bar 1 od nas laže
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 8
+
+a, b. 
+a: isti smo
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 9
+
+a, b. 
+a: nismo isti
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 10
+
+a, b. 
+a: ja govorim istinu, B govori istinu
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 11
+
+a, b. 
+a: ja govorim istinu, B laže
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 12
+
+a, b. 
+a: ja lažem, B govori istinu
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 13
+
+a, b. 
+a: ja lažem, B laže
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 14
+
+a, b. 
+a: jedan od nas ne laže
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 15
+
+a, b. 
+a: jedan od nas laže
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 16
+
+a, b. 
+a: ako ja govorim istinu, B govori istinu
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 17
+
+a, b. 
+a: ako ja govorim istinu, B laže
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 18
+
+a, b. 
+a: ako ja lažem, B govori istinu
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 19
+
+a, b. 
+a: ako ja lažem, B laže
+
+rešenje:
+
+prolog:
+
+
+*/
+
+/* ostrvo 20
+
+a,b,c. 
+a: 1 od nas istinu, 
+b: svi lažemo, 
+c: ostali su lažovi 
+
+rešenje: 
+
+prolog:
+
+*/
+
+
+/* ostrvo 21
+
+a, b, c. 
+a: b ne laže
+b: a i c lažu
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 22
+
+a, b, c. 
+a: ako ja ne lažem, b laže
+b: ja ne lažem, c laže
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 23
+
+a, b, c. 
+a: ja istinu, za njih ne znam
+b: ako a istinu, ja lazem
+c: isti sam kao a
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 24
+
+a, b, c. 
+a: dobar dan
+b: taj sto je reko dobar dan je lazov
+c: ma svi su oni lazovi
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 25
+
+a, b, c. 
+a: ako ja lazem, b ne laze
+b: isti sam kao c
+c: a laze za razliku od mene
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 26
+
+a, b, c. 
+a: b laže i ja lažem
+a: c ne laže
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 27
+
+a, b, c. 
+a: b laže i ja lažem
+a: c ne laže
+
+rešenje:
+
+prolog:
+
+*/
+
+/* ostrvo 28
+
+a, b, c. 
+a: b ne laže
+c: b ne laže ili ja lažem
+c: a ne laže
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 29
+
+a, b, c. 
+a: b laže
+c: b ne laže ili ja lažem
+c: a ne laže
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 30
+a, b, c, d. 
+a: b ne laže ili c laže 
+b: ako a ne laže, onda d laže
+c: b i ja smo isti
+d: c laže, a ne laže
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 31
+a, b, c, d, e. 
+
+a: bar jedan od b i c govori istinu, ali ne oba
+b: ako d ne laže, onda a laže
+c: e i ja smo različiti
+d: što se tiče a, b, c, tu ima dva lažova
+e: b ne laže ako i samo ako a ne laže
+
+rešenje: 
+
+prolog:
+
+*/
+
+/* ostrvo 32
+a, b, c, d, e, f
+
+a: b ne laže, c laže
+b: ako a ne laže, ni d ne laže
+c: d laže ili e laže
+d: jedan od a i f ne laže
+e: b i c su isti
+f: e ne laže ako i samo ako a laže
+
+rešenje:
+
+prolog:
+
+*/
+
+/* ostrvo 33
+A, B, C, D, E, F, G, H, I, J
+
+A: B i C nisu isti
+B: D laže ako i samo ako A ne laže
+C: E i F su isti
+D: B laže ili G ne laže
+E: A, B, C ne lažu
+F: H ne laže ako i samo ako I laže
+G: J laže ili A laže
+H: C i F nisu isti
+I: D ne laže, E laže
+J: H laže ili G ne laže
+
+rešenje: 
+
+prolog:
+
+*/
