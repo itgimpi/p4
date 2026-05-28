@@ -1,0 +1,31 @@
+Gridi
+
+1. Dat je neki iznos. Odredi najmanji broj novčanica (1, 2, 5 i 10) koje prave taj iznos.
+
+2. Date su dve reči. Koja reč sadrži više samoglasnika?
+
+3. Dato je n prirodnih brojeva. Poređaj ih tako da razlika između dva susedna bude najmanja moguća.
+
+4. Dato je n časova svojim početnim i krajnjim vremenom. Na raspolaganju je samo jedna učionica. Koji je najveći broj časova koji može da se održi u njoj?
+
+5. Takmiče se dve ekipe sa po n članova. Svaki član ima svoju jačinu. Prva ekipa je poređala članove po jačini, od najjačeg ka najslabijem. Druga ekipa treba da poređa članove, tako da ostvari što više pobeda. Kad se poređaju takmičari, pobeđuje takmičar sa većom jačinom. Ako su jačine iste, pobeđuje drugi. Koji je broj najvećih pobeda druge ekipe?
+
+6. Egipćani su koristili samo razlomke 1/n. Pretvori razlomak p/q u zbir egipatskih.
+
+7. Dato je n brojeva.
+a) Poređaj ih tako da dobiješ njihovim spajanjem najveći mogući broj.
+a) Poređaj ih tako da dobiješ njihovim spajanjem najmanji mogući broj.
+
+8. Dato je n cifara.
+a) Odredi najveći broj sa njima.
+b) Odredi najmanji broj sa njima.
+
+9. Dato je n cifara.
+a) Sa tim ciframa napravi dva broja. Koji je najveći mogući njihov zbir?
+b) Sa tim ciframa napravi dva broja. Koji je najmanji mogući njihov zbir?
+
+10. Dat je niz celih brojeva.
+a) Ispiši samo elemente koji daju najveći zbir.
+b) Ispiši samo elemente koji daju najmanji zbir.
+c) Ispiši samo elemente koji daju najveći proizvod.
+d) Ispiši samo elemente koji daju najmanji proizvod.
